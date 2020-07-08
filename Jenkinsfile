@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git CheckOut') {
             steps {
-                git 'git@github.com:Janakdudhrejiya/remote_git.git'
+                git 'https://github.com/Janakdudhrejiya/remote_git.git'
             }
         }
         stage('Build') {
