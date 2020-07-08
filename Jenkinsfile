@@ -16,11 +16,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying'
-                sh cp */war /var/tomcat/webapps
+                sh 'cp sample.war /var/tomcat/webapps'
                 sh "chmod 755 webapps"
                 sh "chown tomcat.tomcat webapps"
                 sh "service tomcat restart"
-            }
+                            }
         }
     }
 }
