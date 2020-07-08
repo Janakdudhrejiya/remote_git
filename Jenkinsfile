@@ -2,19 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Git CheckOut') {
             steps {
-                echo 'Building..'
+                git 'git@github.com:Janakdudhrejiya/remote_git.git'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing..'
+                echo 'Building'
+                sh 'mvn package'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying'
+                sh cp */war /var/tomcat/webapps
+                sh "chmod 755 webapps"
+                sh "chown tomcat.tomcat webapps"
+                sh "service tomcat restart"
             }
         }
     }
