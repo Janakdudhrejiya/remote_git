@@ -1,0 +1,5 @@
+In order to set cron job in Linux
+
+1. Open SSH.
+2. Type command crontab -e
+3. * 15 * * * /src/main/path/myscript.sh
