@@ -29,6 +29,10 @@ dependencies {
 }
 
 task copyFiles(type: Copy) {
-    from 'D:/Janak/Copy_Task/Source_Folder'
-    into 'D:/Janak/Copy_Task/Destination_Folder'
-}
+   ant.input(message: 'Please enter source:', addproperty: 'source', defaultValue : '1234')
+    def source_folder = ant.properties.source
+    ant.input(message: 'Please enter destination:', addproperty: 'destination', defaultValue : '1234')
+    def destination_folder = ant.properties.destination
+    from "$source_folder"
+    into "$destination_folder"
+    }
