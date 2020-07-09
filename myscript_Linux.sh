@@ -1,5 +1,5 @@
 #!/bin/bash 
 
-set JAVA_HOME='/user/share/jdk'
-cd /src/main/gradle
+export JAVA_HOME='/user/share/jdk'
+cd /src/main/copy_task
 gradlew copyFiles
