@@ -1,0 +1,21 @@
+FROM centos
+
+MAINTAINER janak.dudhrejiya@gmail.com
+
+RUN yum -y install initscripts && yum clean all
+RUN mkdir /eClinicalWorks
+WORKDIR /eClinicalWorks
+RUN mkdir prodapps
+WORKDIR /eClinicalWorks/prodapps
+RUN mkdir tomcat_portal
+RUN mkdir Openjdk17
+WORKDIR /eClinicalWorks/prodapps/tomcat_portal
+COPY tomcat_portal /eClinicalWorks/prodapps/tomcat_portal
+WORKDIR /eClinicalWorks/prodapps/Openjdk17
+COPY Openjdk17 /eClinicalWorks/prodapps/Openjdk17
+RUN useradd tomcat
+RUN chown -R tomcat.tomcat /eClinicalWorks/prodapps
+RUN chmod -R 755 /eClinicalWorks/prodapps
+WORKDIR /etc/init.d
+RUN ln -s /eClinicalWorks/prodapps/tomcat_portal/bin/tomcat1 tomcat1
+CMD /etc/init.d/tomcat1 start
